@@ -3,26 +3,30 @@ var bookTitle = document.getElementById("book-title");
 var bookCover = document.getElementById("book-cover");
 var bookList = document.getElementById("book-list");
 var emptyList = document.querySelector("#empty-list");
+var deleteBtn = document.querySelector(".delete-btn");
 var myBooks = [];
+
+
 
 addBtn.addEventListener("click", function(event){
     event.preventDefault();
     myBooks.push( {title: bookTitle.value, cover: bookCover.value});
-    clearBooks();
-    addBooks();
+    createBook(bookTitle.value, bookCover.value);
     bookTitle.value = "";
     bookCover.value = "";
-    console.log(myBooks);
+    // console.log(myBooks);
 })
 
 document.querySelector("body").addEventListener("click", function(e) {
     if(e.target.classList.contains("delete-btn")){
-        for (var i =0; i < myBooks.length; i++)
-         myBooks.splice(i,1);
-   }
-   clearBooks()
-   addBooks()
-   console.log(myBooks);   
+        for (var i =0; i < myBooks.length; i++) {
+            if (myBooks[i].title === e.target.dataset.book) {
+                myBooks.splice(i, 1);
+                clearBooks();
+                renderBook();
+             }
+        }
+   }  
 })
 
 emptyList.addEventListener("click", function(){
@@ -37,22 +41,34 @@ function clearBooks() {
     }
 };
 
-function addBooks() {
+function renderBook() {
     for(i = 0; i < myBooks.length; i++){
-        var newBook = bookList.appendChild(document.createElement("li"));
-        newBook.classList.add("list-group-item")
-        var newBookTitle = document.createElement("p");
-        newBookTitle.innerHTML = myBooks[i].title;
-        newBookTitle.classList.add("li-content")
-        var newBookCover = document.createElement("img");
-        newBookCover.src = myBooks[i].cover;
-        newBookCover.classList.add("cover")
-        var deleteBtn = document.createElement("button");
-        deleteBtn.classList.add("btn", "btn-danger", "delete-btn", "li-content")
-        var deleteBtnName = document.createTextNode("Delete Book");
-        deleteBtn.appendChild(deleteBtnName);
-        newBook.appendChild(newBookTitle);
-        newBook.appendChild(newBookCover);
-        newBook.appendChild(deleteBtn); 
+        createBook(myBooks[i].title, myBooks[i].cover);        
     };
+}
+
+function createBook(title, cover) {
+    var newBook = document.createElement("li");
+    newBook.classList.add("list-group-item");
+    var newBookTitle = document.createElement("p");
+    newBookTitle.innerHTML = title;
+    newBookTitle.classList.add("li-content")
+    var newBookCover = document.createElement("img");
+    newBookCover.src = cover;
+    newBookCover.classList.add("cover")
+    var deleteBtn = document.createElement("button");
+    deleteBtn.dataset.book = title;
+    deleteBtn.classList.add("btn", "btn-danger", "delete-btn", "li-content");
+    var deleteBtnName = document.createTextNode("Delete Book");
+    deleteBtn.appendChild(deleteBtnName);
+    newBook.appendChild(newBookTitle);
+    newBook.appendChild(newBookCover);
+    newBook.appendChild(deleteBtn);
+    addBooks(newBook);
+}
+
+function addBooks(newBook) {
+    bookList.appendChild(newBook);
 };
+
+renderBook();
