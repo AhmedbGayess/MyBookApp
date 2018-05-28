@@ -1,18 +1,70 @@
 body {
-    background: lightblue;
-    padding: 50px;
+    font-family: 'Song Myung', serif;
+    margin: 0;
 }
 
-html {
-    height: 100%;
+#page-container {
+    margin: 20px auto;
 }
 
-.jumbotron h1{
-    font-family: 'Satisfy', cursive;
-    font-weight: bolder;
-    font-size:100px;
+.jumbotron {
+    background: #404040;
+    color: white;
     text-align: center;
-    margin: 50px;
+    font-weight: bold;
+}
+
+label {
+    font-size: 35px;
+}
+
+#add {
+    margin: 35px auto;
+    background: #59AFC2;
+    border: none;
+}
+
+#add:hover {
+    background: white;
+    color: #59AFC2;
+    border: 1px solid #59AFC2;
+}
+
+#empty-list {
+    margin: 35px auto;
+    background: #F55F51;
+    border: none;
+}
+
+#empty-list:hover {
+    background: white;
+    color: #F55F51;
+    border: 1px solid #F55F51;
+}
+
+.btn:focus,.btn:active {
+    outline: none !important;
+    box-shadow: none;
+ }
+
+.delete {
+    margin: 35px auto;
+    color: white;
+    background: #F55F51;
+    border: none;
+}
+
+
+.delete:hover {
+    background: white;
+    color: #F55F51;
+    border: 1px solid #F55F51;
+}
+
+.list {
+    font-size: 25px;
+    margin-top: 220px;
+    text-align: center;
 }
 
 
@@ -23,34 +75,7 @@ html {
     display: inline-block;
 }
 
-label, h2 {
-    font-family: 'Satisfy', cursive;
-    font-weight: bolder;
-    font-size: 40px;
-    padding: 20px;
+.form-control:focus {
+    border: 1px solid #59AFC2;
+    box-shadow: none;
 }
-
-#book-list {
-    font-family: 'Satisfy', cursive;
-    font-weight: bolder;
-    font-size:50px;
-    margin: 30px;
-}
-
-#list-container {
-    background-color: white;
-    display: inline-block;
-    width: 100%;
-    margin: 30px auto;
-}
-
-.title-cover {
-    margin: 20px 0;
-}
-
-.li-content {
-    width: 20%;
-    margin: 20px 40px;
-    display: inline-block;
-}
-
